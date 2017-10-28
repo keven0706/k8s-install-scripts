@@ -8,7 +8,7 @@ set -o pipefail
 
 MASTER_ADDRESS=${1:-"127.0.0.1"}
 KUBE_TOKEN=${2:-"863f67.19babbff7bfe8543"}
-DOCKER_MIRRORS=${3:-"https://5md0553g.mirror.aliyuncs.com"}
+DOCKER_MIRRORS=${3:-"https://evwgcvh9.mirror.aliyuncs.com"}
 KUBE_VERSION=1.7.2
 KUBE_PAUSE_VERSION=3.0
 KUBE_CNI_VERSION=0.5.1
@@ -38,14 +38,14 @@ echo '============================================================'
 echo '====================Add docker yum repo...=================='
 echo '============================================================'
 #docker yum源
-cat >> /etc/yum.repos.d/docker.repo <<EOF
-[docker-repo]
-name=Docker Repository
-baseurl=http://mirrors.aliyun.com/docker-engine/yum/repo/main/centos/7
-enabled=1
-gpgcheck=0
-EOF
-echo "Add docker yum repo success!"
+#cat >> /etc/yum.repos.d/docker.repo <<EOF
+#[docker-repo]
+#name=Docker Repository
+#baseurl=http://mirrors.aliyun.com/docker-engine/yum/repo/main/centos/7
+#enabled=1
+#gpgcheck=0
+#EOF
+#echo "Add docker yum repo success!"
 
 echo '============================================================'
 echo '====================Add kubernetes yum repo...=============='
@@ -66,19 +66,19 @@ echo '============================================================'
 #查看docker版本
 #yum list docker-engine showduplicates
 #安装docker
-yum install -y docker-engine-1.12.6-1.el7.centos.x86_64
+#yum install -y docker-engine-1.12.6-1.el7.centos.x86_64
 
-echo "Install docker success!"
+#echo "Install docker success!"
 
 echo '============================================================'
 echo '====================Config docker...========================'
 echo '============================================================'
-mkdir -p /etc/docker
-cat > /etc/docker/daemon.json <<EOF
-{
-  "registry-mirrors": ["${DOCKER_MIRRORS}"]
-}
-EOF
+#mkdir -p /etc/docker
+#cat > /etc/docker/daemon.json <<EOF
+#{
+#  "registry-mirrors": ["${DOCKER_MIRRORS}"]
+#}
+#EOF
 echo "Config docker success!"
 
 echo '============================================================'
@@ -110,9 +110,9 @@ echo "Config kubelet success!"
 echo '============================================================'
 echo '==============Start docker and kubelet services...=========='
 echo '============================================================'
-systemctl enable docker
+#systemctl enable docker
 systemctl enable kubelet
-systemctl start docker
+#systemctl start docker
 systemctl start kubelet
 echo "The docker and kubelet services started"
 
